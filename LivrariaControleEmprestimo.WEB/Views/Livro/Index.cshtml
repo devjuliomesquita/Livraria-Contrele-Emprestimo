@@ -1,0 +1,84 @@
+﻿@model IEnumerable<LivrariaContreleEmprestimo.DATA.Models.Livro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Catálogo de Livros</h1>
+<br/>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Adicionar novo livro</a>
+</p>
+<br />
+<table class="table" id="tabela-livros">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LivroNome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LivroAutor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LivroEditora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LivroAnoPublicacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LivroEdicao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LivroNome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LivroAutor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LivroEditora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LivroAnoPublicacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LivroEdicao)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Alterar</a> 
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> 
+                
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal-@item.Id">
+                        Excluir
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal-@item.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="deleteModalLabel">Excluir livro do catálogo</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Deseja realmente excluir o livro @item.LivroNome do catálogo ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Não</button>
+                                    <a class="btn btn-danger m-1" asp-action="Delete" asp-route-id="@item.Id">Sim</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

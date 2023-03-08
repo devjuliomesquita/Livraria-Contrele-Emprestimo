@@ -1,0 +1,48 @@
+﻿@model LivrariaContreleEmprestimo.DATA.Models.Livro
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes do livro</h1>
+<h3>Dados</h3>
+<hr />
+<div>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.Id">Alterar dados</a>
+    <a class="btn btn-primary" asp-action="Index">Voltar para a lista</a>
+</div>
+<br/>
+
+<div class="card">
+    <div class="card-header">Informações sobre o Livro</div>
+    <div class="card-body row">
+        <div class="col-md">
+            <div class="form-group">
+                <label class="control-label">@Html.DisplayNameFor(model => model.LivroNome)</label>
+                <input value="@Html.DisplayFor(model => model.LivroNome)" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Html.DisplayNameFor(model => model.LivroAutor)</label>
+                <input value="@Html.DisplayFor(model => model.LivroAutor)" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Html.DisplayNameFor(model => model.LivroEditora)</label>
+                <input value="@Html.DisplayFor(model => model.LivroEditora)" disabled class="form-control" />
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label class="control-label"> @Html.DisplayNameFor(model => model.LivroEdicao)</label>
+                <input value="@Html.DisplayFor(model => model.LivroEdicao)" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label"> @Html.DisplayNameFor(model => model.LivroAnoPublicacao)</label>
+                <input value="@Html.DisplayFor(model => model.LivroAnoPublicacao)" disabled class="form-control" />
+            </div>
+        </div>
+    </div>
+</div>
+       
+
+
+

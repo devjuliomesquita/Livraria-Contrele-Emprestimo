@@ -1,0 +1,90 @@
+﻿@model IEnumerable<LivrariaContreleEmprestimo.DATA.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="display-4">Lista de Clientes </h1>
+<br />
+<p>
+    <a class="btn btn-primary" asp-action="Create">Adicionar novo cliente</a>
+</p>
+<br/>
+<table class="table" id="tabela-clientes">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CliCpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CliNome)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.CliCidade)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.CliTelefoneCelular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CliEmail)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CliCpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CliNome)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.CliCidade)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.CliTelefoneCelular)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.CliEmail)
+            </td>
+            
+                <td class="btn-group" role="group">
+                        <a class="btn btn-warning m-1" asp-action="Edit" asp-route-id="@item.Id">Alterar</a>
+                        <a class="btn btn-primary m-1" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                        
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal-@item.Id">
+                        Excluir
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal-@item.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="deleteModalLabel">Excluir cliente</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Deseja realmente excluir o cliente @item.CliNome ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Não</button>
+                                    <a class="btn btn-danger m-1" asp-action="Delete" asp-route-id="@item.Id">Sim</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
